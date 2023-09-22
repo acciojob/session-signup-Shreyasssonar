@@ -4,5 +4,50 @@
   </head>
   <body>
     <!-- Write your code here -->
+	   <form id="signup-form">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+
+        <label for="confirm-password">Confirm Password</label>
+        <input type="password" id="confirm-password" name="confirm-password" required>
+
+        <button type="submit" id="submit">Sign Up</button>
+    </form>
+
+
+	   <script>
+        document.getElementById("signup-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirm-password").value;
+            
+            // Check if passwords match
+            if (password === confirmPassword) {
+                // Save data in session storage
+                sessionStorage.setItem("name", name);
+                sessionStorage.setItem("email", email);
+                sessionStorage.setItem("password", password);
+                
+                // Show success alert
+                alert("Sign up successful!");
+                
+                // Clear form
+                document.getElementById("signup-form").reset();
+            } else {
+                // Show password mismatch alert
+                alert("Passwords do not match");
+            }
+        });
+    </script>
   </body>
 </html>
